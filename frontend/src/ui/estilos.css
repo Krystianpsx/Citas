@@ -1,0 +1,825 @@
+/*
+ * Clínica Santa Clara: estilos de la recepción.
+ * Paleta tomada del entorno clínico: papel de camilla (gris verdoso), verde quirúrgico
+ * para lo confirmado y las acciones principales, azul para lo pendiente.
+ * El único elemento llamativo es el tablero del día; el resto se mantiene sobrio.
+ */
+
+:root {
+  --papel: #edf1ef;
+  --superficie: #ffffff;
+  --tinta: #17302c;
+  --tinta-suave: #50635f;
+  --linea: #d3ddd9;
+  --linea-media: #e6ecea;
+  --linea-fuerte: #a9bab4;
+
+  --verde: #1e6b59;
+  --verde-oscuro: #165445;
+  --verde-tenue: #e0efea;
+  --azul: #2f5c9e;
+  --azul-tenue: #e7eef8;
+  --gris: #69756f;
+  --gris-tenue: #eef0ef;
+  --rojo: #a3322c;
+  --rojo-tenue: #f8e7e5;
+  --ambar: #c7860a;
+
+  --fuente: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fuente-titulos: "Bricolage Grotesque", "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+
+  --alto-franja: 3rem;
+  --radio: 6px;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--fuente);
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+}
+
+a {
+  color: var(--verde-oscuro);
+}
+
+:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+}
+
+/* ---------- Estructura ---------- */
+
+.barra {
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1.5rem;
+  background: var(--superficie);
+  border-bottom: 1px solid var(--linea);
+  min-height: 3.5rem;
+}
+
+.barra__marca {
+  align-self: center;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--verde);
+}
+
+.barra__navegacion {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.barra__navegacion a {
+  display: flex;
+  align-items: center;
+  padding: 0 0.875rem;
+  color: var(--tinta-suave);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+}
+
+.barra__navegacion a:hover {
+  color: var(--tinta);
+}
+
+.barra__navegacion a.active {
+  color: var(--tinta);
+  border-bottom-color: var(--verde);
+}
+
+.principal {
+  padding: 1.5rem;
+}
+
+.pagina {
+  max-width: 72rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pagina__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.pagina__descripcion {
+  margin: 0.25rem 0 0;
+  color: var(--tinta-suave);
+}
+
+/* ---------- Botones y controles ---------- */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.95rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--tinta);
+  background: var(--superficie);
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.boton:hover {
+  background: #f4f7f6;
+}
+
+.boton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.boton--primario {
+  color: #fff;
+  background: var(--verde);
+  border-color: var(--verde);
+}
+
+.boton--primario:hover {
+  background: var(--verde-oscuro);
+}
+
+.boton--peligro {
+  color: var(--rojo);
+  border-color: #ddb1ad;
+}
+
+.boton--peligro:hover {
+  background: var(--rojo-tenue);
+}
+
+.boton--peligro-lleno {
+  color: #fff;
+  background: var(--rojo);
+  border-color: var(--rojo);
+}
+
+.boton--peligro-lleno:hover {
+  background: #8a2924;
+}
+
+.boton--fantasma {
+  color: var(--tinta-suave);
+  background: transparent;
+  border-color: transparent;
+}
+
+.enlace {
+  padding: 0;
+  font: inherit;
+  color: var(--verde-oscuro);
+  text-align: left;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  color: var(--tinta);
+  background: var(--superficie);
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.buscador {
+  max-width: 24rem;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ---------- Formularios ---------- */
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.campo__etiqueta {
+  padding: 0;
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+legend.campo__etiqueta {
+  margin-bottom: 0.375rem;
+}
+
+.campo__ayuda {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--tinta-suave);
+}
+
+.horas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.horas__opcion {
+  position: relative;
+}
+
+.horas__opcion input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.horas__opcion span {
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+}
+
+.horas__opcion:hover span {
+  border-color: var(--verde);
+}
+
+.horas__opcion input:checked + span {
+  color: #fff;
+  background: var(--verde);
+  border-color: var(--verde);
+}
+
+.horas__opcion input:focus-visible + span {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+}
+
+/* ---------- Avisos ---------- */
+
+.aviso {
+  margin: 0;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  border-radius: var(--radio);
+  border-left: 3px solid;
+}
+
+.aviso--error {
+  color: var(--rojo);
+  background: var(--rojo-tenue);
+}
+
+.aviso--exito {
+  color: var(--verde-oscuro);
+  background: var(--verde-tenue);
+}
+
+.cargando {
+  color: var(--tinta-suave);
+}
+
+.vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 2rem;
+  background: var(--superficie);
+  border: 1px dashed var(--linea-fuerte);
+  border-radius: 8px;
+}
+
+.vacio p {
+  margin: 0;
+}
+
+/* ---------- Insignias de estado ---------- */
+
+.insignia {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border: 1px solid;
+  border-radius: 999px;
+}
+
+.insignia--programada {
+  color: var(--azul);
+  background: var(--azul-tenue);
+  border-style: dashed;
+}
+
+.insignia--confirmada {
+  color: var(--verde-oscuro);
+  background: var(--verde-tenue);
+}
+
+.insignia--atendida {
+  color: var(--gris);
+  background: var(--gris-tenue);
+}
+
+.insignia--cancelada {
+  color: var(--rojo);
+  background: var(--rojo-tenue);
+}
+
+/* ---------- Agenda ---------- */
+
+.agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.agenda__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.agenda__cabecera > div:first-child {
+  flex: 1 1 18rem;
+}
+
+.agenda__fecha {
+  font-size: 2.25rem;
+}
+
+.agenda__resumen {
+  margin: 0.25rem 0 0;
+  color: var(--tinta-suave);
+}
+
+.agenda__navegacion {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.agenda__navegacion .boton {
+  min-width: 2.5rem;
+}
+
+.agenda__selector-de-fecha {
+  width: auto;
+}
+
+/* El tablero: una sola rejilla con cabecera y columna de horas fijas al desplazarse. */
+.tablero {
+  max-height: calc(100dvh - 13rem);
+  min-height: 22rem;
+  overflow: auto;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+}
+
+.tablero__rejilla {
+  display: grid;
+  grid-template-columns: 4.25rem repeat(var(--columnas), minmax(11.5rem, 1fr));
+  min-width: min-content;
+}
+
+.tablero__esquina,
+.tablero__medico {
+  position: sticky;
+  top: 0;
+  background: var(--superficie);
+  border-bottom: 1px solid var(--linea-fuerte);
+}
+
+.tablero__esquina {
+  left: 0;
+  z-index: 4;
+  border-right: 1px solid var(--linea);
+}
+
+.tablero__medico {
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 0.875rem;
+  border-left: 1px solid var(--linea);
+}
+
+.tablero__nombre {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.tablero__especialidad {
+  font-size: 0.875rem;
+  color: var(--tinta-suave);
+}
+
+/* Líneas de la rejilla: tenue en la media hora, marcada en la hora en punto. */
+.tablero__horas,
+.columna {
+  display: grid;
+  grid-template-rows: repeat(var(--franjas), var(--alto-franja));
+  background-image: linear-gradient(
+    to bottom,
+    transparent calc(var(--alto-franja) - 1px),
+    var(--linea-media) calc(var(--alto-franja) - 1px) var(--alto-franja),
+    transparent var(--alto-franja) calc(2 * var(--alto-franja) - 1px),
+    var(--linea) calc(2 * var(--alto-franja) - 1px)
+  );
+  background-size: 100% calc(2 * var(--alto-franja));
+}
+
+.tablero__horas {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: var(--superficie);
+  border-right: 1px solid var(--linea);
+}
+
+.tablero__horas li {
+  padding: 0.3rem 0.6rem 0 0;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--tinta-suave);
+}
+
+.tablero__horas li.en-punto {
+  font-weight: 700;
+  color: var(--tinta);
+}
+
+.columna {
+  position: relative;
+  border-left: 1px solid var(--linea);
+}
+
+.franja {
+  margin: 3px 4px;
+  border-radius: 4px;
+}
+
+.franja--pasada {
+  margin: 0;
+  background: repeating-linear-gradient(135deg, transparent 0 6px, rgb(23 48 44 / 4%) 6px 12px);
+}
+
+.franja--libre {
+  padding: 0 0.6rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-align: left;
+  color: transparent;
+  background: transparent;
+  border: 1px dashed transparent;
+  cursor: pointer;
+}
+
+.franja--libre:hover,
+.franja--libre:focus-visible {
+  color: var(--verde-oscuro);
+  background: var(--verde-tenue);
+  border-color: var(--verde);
+}
+
+.bloque {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  margin: 3px 4px;
+  padding: 0.25rem 0.55rem;
+  overflow: hidden;
+  font: inherit;
+  text-align: left;
+  color: var(--tinta);
+  border: 1px solid;
+  border-left-width: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.bloque:hover {
+  filter: brightness(0.97);
+}
+
+/* El estado se distingue también por la forma, no solo por el color. */
+.bloque--programada {
+  background: var(--azul-tenue);
+  border-color: #c3d3ea;
+  border-left-color: var(--azul);
+  border-left-style: dashed;
+}
+
+.bloque--confirmada {
+  background: var(--verde-tenue);
+  border-color: #b9d8cd;
+  border-left-color: var(--verde);
+}
+
+.bloque--atendida {
+  color: var(--tinta-suave);
+  background: var(--gris-tenue);
+  border-color: var(--linea);
+  border-left-color: var(--gris);
+}
+
+.bloque--atendida .bloque__paciente::before {
+  content: "✓ ";
+}
+
+.bloque__paciente,
+.bloque__detalle {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bloque__paciente {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.bloque__detalle {
+  font-size: 0.8125rem;
+  line-height: 1.25;
+  color: var(--tinta-suave);
+}
+
+.bloque__hora {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--tinta);
+}
+
+.linea-ahora {
+  position: absolute;
+  top: calc(var(--posicion) * var(--alto-franja));
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 2px;
+  background: var(--ambar);
+  pointer-events: none;
+}
+
+.tablero__horas + .columna .linea-ahora::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--ambar);
+  border-radius: 50%;
+}
+
+.canceladas summary {
+  font-weight: 700;
+  color: var(--tinta-suave);
+  cursor: pointer;
+}
+
+.canceladas ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0.5rem 0 0 1.1rem;
+  list-style: none;
+}
+
+/* ---------- Panel lateral ---------- */
+
+.cajon {
+  inset: 0 0 0 auto;
+  width: min(28rem, 100vw);
+  height: 100dvh;
+  max-width: 100vw;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  color: var(--tinta);
+  background: var(--superficie);
+  border: 0;
+  box-shadow: -8px 0 28px rgb(23 48 44 / 14%);
+}
+
+.cajon::backdrop {
+  background: rgb(23 48 44 / 28%);
+}
+
+.cajon[open] {
+  animation: entrar-cajon 0.18s ease-out;
+}
+
+@keyframes entrar-cajon {
+  from {
+    transform: translateX(1.5rem);
+    opacity: 0.6;
+  }
+}
+
+.cajon__contenido {
+  padding: 1rem 1.5rem 2rem;
+}
+
+.cajon__cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.panel > .formulario,
+.panel > .aviso {
+  align-self: stretch;
+}
+
+.panel__paciente {
+  font-size: 1.625rem;
+}
+
+.panel__nota {
+  flex-basis: 100%;
+  margin: 0.25rem 0 0;
+  font-size: 0.9375rem;
+  color: var(--tinta-suave);
+}
+
+.ficha {
+  margin: 0 0 0.5rem;
+}
+
+.ficha dt {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--tinta-suave);
+}
+
+.ficha dd {
+  margin: 0;
+}
+
+/* ---------- Tablas ---------- */
+
+.tabla {
+  overflow-x: auto;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+th {
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+  color: var(--tinta-suave);
+  border-bottom: 1px solid var(--linea-fuerte);
+}
+
+td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--linea-media);
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.numero {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Pantallas pequeñas y preferencias ---------- */
+
+@media (max-width: 40rem) {
+  .barra {
+    flex-direction: column;
+    gap: 0;
+    padding: 0.75rem 1rem 0;
+  }
+
+  .barra__marca {
+    align-self: flex-start;
+  }
+
+  .barra__navegacion a {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .principal {
+    padding: 1rem;
+  }
+
+  .agenda__fecha {
+    font-size: 1.75rem;
+  }
+
+  .tablero {
+    max-height: calc(100dvh - 17rem);
+  }
+
+  .tablero__rejilla {
+    grid-template-columns: 3.5rem repeat(var(--columnas), minmax(10rem, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cajon[open] {
+    animation: none;
+  }
+}
